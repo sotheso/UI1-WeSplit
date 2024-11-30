@@ -80,7 +80,7 @@ struct ContentView: View {
             // دکمه برای در کردن فوکوس کیبورد
             .toolbar{
                 if keybordfocus {
-                    Button("انجام شده"){
+                    Button("انجام شد"){
                         keybordfocus = false
                     }
                 }
