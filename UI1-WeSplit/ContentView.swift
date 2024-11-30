@@ -8,49 +8,83 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var mablaq = 0.0
+    // تعداد دنگ‌ها
+    @State private var tedadAdam = 2
+    @State private var darsadAnam = 20
+    // فوکوس کیبورد
+    @FocusState private var keybordfocus: Bool
     
-    let country = ["IRAN", "USA", "UK", "JAPAN"]
-    @State private var selectCountry = "IRAN"
+    let darsadAnams = [5, 10, 20, 30, 35]
     
-    @State var tapCount = 0
-    @State var name = ""
+    // مجموع صورت حساب
+    var mablaqPardalhti :Double {
+        let darsadeAnam = Double(darsadAnam)
+        
+        let meqdarAnam = mablaq / 100 * darsadeAnam
+        let mablaqPardakhti = meqdarAnam + mablaq
+        
+        return mablaqPardakhti
+    }
+    
+    // محاسبه انعام
+    var dongeHarNafar :Double {
+        let donge = Double(tedadAdam + 2)
+        let darsadeAnam = Double(darsadAnam)
+        
+        let meqdarAnam = mablaq / 100 * darsadeAnam
+        let mablaqPardakhti = meqdarAnam + mablaq
+        
+        let dongeHarNafar = mablaqPardakhti / donge
+        
+        return dongeHarNafar
+    }
+
     
     var body: some View {
         NavigationStack{
             Form{
-                Text("Sothesom")
-                Text("iran")
-                
                 Section{
-                    Text("tehran")
-                }
-                
-                Section{
-                    Button("add \(tapCount)"){
-                        tapCount += 1
-                    }
-                }
-                
-                Section{
-                    Picker("select your contry", selection: $selectCountry){
-                        ForEach(country, id: \.self){
-                            Text($0)
+                    TextField("مبلغ", value: $mablaq, format: .currency(code: Locale.current.currency?.identifier ?? "USA"))
+                        .keyboardType(.decimalPad)
+                        .focused($keybordfocus)
+                    
+                    Picker("تعداد آدم‌ها", selection: $tedadAdam){
+                        ForEach(2..<10){
+                            Text("آدم \($0)")
                         }
                     }
+//                    .pickerStyle(.navigationLink)
                 }
                 
-                TextField("Enter your name", text: $name)
-                Text("Your name is \(name)")
+                Section("لطفا درصد انعامی که میخواهید بدهید را مشخص کنید."){
+                    Picker("درصد انعام", selection: $darsadAnam){
+                        ForEach(darsadAnams, id: \.self){
+                            Text($0, format: .percent)
+                        }
+                    }
+                    .pickerStyle(.segmented)
+                }
                 
-                Section{
-                    ForEach(0..<10) { number in
-                        Text("ADAD \(number)")
+                Section("مجموع صورت حساب"){
+                    Text(mablaqPardalhti, format: .currency(code: Locale.current.currency?.identifier ?? "USA"))
+                    
+                }
+                
+                // نتیجه‌نهایی
+                Section("دنگ هر نفر"){
+                    Text(dongeHarNafar, format: .currency(code: Locale.current.currency?.identifier ?? "USA"))
+                }
+            }
+            .navigationTitle("صورت حساب انعام")
+            // دکمه برای در کردن فوکوس کیبورد
+            .toolbar{
+                if keybordfocus {
+                    Button("انجام شده"){
+                        keybordfocus = false
                     }
                 }
-                
             }
-            .navigationTitle("Sothesom")
-//            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
