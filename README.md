@@ -6,5 +6,4 @@ Screenshot App in Issues
 #
 [Picker] , [TextField], [ForEach], [Section], .keyboardType, format(USA), .pickerStyle, @FocusState
 
-![Add photo app](https://github.com/sotheso/UI1-WeSplit/blob/main/UI1-WeSplit/photoApp01.png)
-![Add photo app](https://github.com/sotheso/UI1-WeSplit/blob/main/UI1-WeSplit/photoApp02.png)
+![Add photo app](https://github.com/sotheso/UI1-WeSplit/blob/main/UI1-WeSplit/photoApp.png)
