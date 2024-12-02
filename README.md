@@ -5,3 +5,6 @@ Screenshot App in Issues
 
 #
 [Picker] , [TextField], [ForEach], [Section], .keyboardType, format(USA), .pickerStyle, @FocusState
+
+![Add photo app](photoApp01)
+![Add photo app](photoApp02)
